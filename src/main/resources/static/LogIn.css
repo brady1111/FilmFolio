@@ -1,0 +1,14 @@
+.logInContainer {
+    width: 90%;
+    margin: auto;
+    text-align: center;
+    margin-top: 150px;
+}
+
+.passwordContainer {
+    margin-top: 15px;
+}
+
+.logInButton {
+    width: 500px;
+}
