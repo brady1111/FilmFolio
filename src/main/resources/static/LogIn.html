@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 
 <head>
     <meta charset="UTF-8">
@@ -11,23 +11,45 @@
     <link rel="stylesheet" href="LogIn.css">
 </head>
 
-<body>
+<body class="logInPage">
 
 <div class="logInContainer">
     <h2>Filmfolio Login</h2>
 
-    <div class="usernameContainer">
-        <input type="text" id="username" placeholder="Enter a Username...">
+    <label id="emailLabel">Email:</label>
+    <div class="emailContainer">
+        <input type="text" id="email" placeholder="Example@gmail.com">
     </div>
 
+    <label id="passwordLabel">Password:</label>
     <div class="passwordContainer">
-        <input type="password" id="password" placeholder="Enter a Password...">
+        <input type="password" id="password" placeholder="">
+        <button type="button" id="togglePassword" aria-label="Show password">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 width="20"
+                 height="20"
+                 viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="currentColor"
+                 stroke-width="2"
+                 stroke-linecap="round"
+                 stroke-linejoin="round">
+                <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/>
+                <circle cx="12" cy="12" r="3"/>
+            </svg>
+        </button>
     </div>
+
+    <a id="forgotPassword"href="ForgotPassword.html">Forgot password?</a>
 
     <div class = "logInButtonContainer">
         <button class="logInButton">Log In</button>
     </div>
+
+    <a id="signUp"href="SignUp.html">Create Account</a>
 </div>
+
+<script src="LogIn.js"></script>
 
 </body>
 
