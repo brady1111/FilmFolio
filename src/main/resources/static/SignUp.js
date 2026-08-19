@@ -73,30 +73,64 @@ password.addEventListener("input", function () {
     }
 });
 
-
-//go back to login after creating account
-signUpButton.addEventListener("click", function() {
+//create new account
+signUpButton.addEventListener("click", async function() {
 
     //password error handling
     if(password.value === "") {
         signUpError.textContent = "Please enter a password.";
+        return;
     }else if(confirmPassword.value === "") {
         signUpError.textContent = "Please confirm your password.";
+        return;
     }else if(password.value !== confirmPassword.value) {
         signUpError.textContent = "Passwords do not match.";
+        return;
     }else if(!passwordRequirementsMet()) {
-        signUpError.textContent = "Password does not meet the requirements."
+        signUpError.textContent = "Password does not meet the requirements.";
+        return;
     }
 
     //email error handling
-    else if(email.value.trim() === "") {
+    if(email.value.trim() === "") {
         signUpError.textContent = "Please enter an email address.";
+        return;
     }else if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
         signUpError.textContent = "Please enter a valid email address.";
-    }else{
-        window.location.href = "LogIn.html";
+        return;
     }
 
+    //disable button while request is being sent
+    signUpButton.disabled = true;
+    signUpError.textContent = "";
+
+    try {
+        const response = await fetch(
+            `http://localhost:8080/signup?email=${encodeURIComponent(email.value.trim())}&password=${encodeURIComponent(password.value)}`,
+            {
+                method: "POST"
+            }
+        );
+
+        if(response.ok) {
+            //account successfully created
+            window.location.href = "LogIn.html";
+        } else {
+            const error = await response.json();
+
+            if(error.message === "Email is already registered") {
+                signUpError.textContent = "That email is already registered.";
+            } else {
+                signUpError.textContent = "Something went wrong. Please try again.";
+            }
+        }
+
+    } catch(error) {
+        console.error("Signup error:", error);
+        signUpError.textContent = "Unable to connect to the server.";
+    }
+
+    signUpButton.disabled = false;
 });
 
 //function to check if password meets requirements
