@@ -1,0 +1,98 @@
+.signUpPage{
+    background:
+            radial-gradient(circle at 15% 20%, rgba(0, 120, 255, 0.5), transparent 40%),
+            radial-gradient(circle at 85% 80%, rgba(180, 0, 255, 0.4), transparent 40%),
+            linear-gradient(135deg, #020202, #111111);
+    min-height: 100vh;
+}
+
+.signUpContainer {
+    width: 90%;
+    max-width: 400px;
+    margin: 150px auto 0;
+    text-align: center;
+
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+
+    padding: 2rem;
+    border-radius: 12px;
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+.signUpButton {
+    margin-top: 20px;
+    width: 325px;
+    border-radius: 20px;
+}
+
+#emailLabel {
+    margin-right: 280px;
+}
+
+#passwordLabel {
+    display: block;
+    margin-top: 25px;
+    margin-bottom: 5px;
+    margin-right: 250px;
+}
+
+#confirmPasswordLabel {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    margin-right: 195px;
+}
+
+.passwordContainer {
+    position: relative;
+    display: inline-block;
+}
+
+#email,
+#password,
+#confirmPassword {
+    box-sizing: border-box;
+    width: 325px;
+}
+
+#password,
+#confirmPassword {
+    padding-right: 40px;
+}
+
+.togglePassword {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+#passwordRequirements {
+    width: 250px;
+    margin: 5px auto 0;
+    text-align: left;
+}
+
+#passwordRequirements p {
+    margin: 2px 0;
+    font-size: 12px;
+}
+
+.signUpButton {
+    margin-top: 20px;
+    width: 200px;
+}
+
+#signUpError {
+    margin: 8px 0 0;
+    font-size: 14px;
+    color: red;
+    font-weight: bold;
+}
