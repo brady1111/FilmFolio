@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.brady.filmfolionew.dto.Movie;
+import com.brady.filmfolionew.dto.MovieDto;
 import com.brady.filmfolionew.tmdb.TmdbMovie;
 import com.brady.filmfolionew.tmdb.TmdbSearchResponse;
 
@@ -30,20 +30,20 @@ public class TmdbService {
     }
 
     //method to search for a movie
-    public List<Movie> searchMovies(String title) {
+    public List<MovieDto> searchMovies(String title) {
         String url = "https://api.themoviedb.org/3/search/movie"
                 + "?api_key=" + apiKey
                 + "&query=" + title;
         TmdbSearchResponse response = restTemplate.getForObject(url, TmdbSearchResponse.class);
 
         //list that holds movies
-        List<Movie> movies = new ArrayList<>();
+        List<MovieDto> movies = new ArrayList<>();
 
         //loop through each resulted movie from TMDB
         for (TmdbMovie tmdbMovie : response.getResults()) {
 
             //create movie
-            Movie movie = new Movie();
+            MovieDto movie = new MovieDto();
 
             //get data from TMDB
             movie.setId(tmdbMovie.getId());

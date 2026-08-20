@@ -1,6 +1,6 @@
 package com.brady.filmfolionew.controller;
 
-import com.brady.filmfolionew.dto.Movie;
+import com.brady.filmfolionew.dto.MovieDto;
 import com.brady.filmfolionew.service.TmdbService;
 import com.brady.filmfolionew.tmdb.TmdbMovie;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,14 +20,14 @@ public class MovieController {
     }
 
     @GetMapping("/search")
-    public List<Movie> search(@RequestParam String title) {
+    public List<MovieDto> search(@RequestParam String title) {
         return tmdbService.searchMovies(title);
     }
 
     @GetMapping("/movie/{id}")
-    public Movie getMovie(@PathVariable int id) {
+    public MovieDto getMovie(@PathVariable int id) {
         TmdbMovie tmdbMovie = tmdbService.getMovieId(id);
-        Movie movie = new Movie();
+        MovieDto movie = new MovieDto();
 
         movie.setId(tmdbMovie.getId());
         movie.setTitle(tmdbMovie.getTitle());
