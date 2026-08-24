@@ -65,3 +65,62 @@
     cursor: pointer;
     padding: 0;
 }
+
+#newPasswordLabel, #confirmPasswordLabel {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 0;
+    margin-right: 215px;
+}
+
+#newPasswordLabel {
+    margin-right: 240px;
+}
+
+
+.resetPage .passwordRequirements {
+    width: 325px;
+    margin: 8px auto 15px;
+    text-align: left;
+    font-size: 12px;
+}
+
+.resetPage .passwordRequirements p {
+    margin: 3px 0;
+}
+
+#resetPasswordButton {
+    margin-top: 20px;
+}
+
+#resetMessage {
+    margin-top: 15px;
+}
+
+.resetPage .passwordContainer {
+    position: relative;
+    display: inline-block;
+}
+.passwordContainer input {
+    padding-right: 40px;
+}
+
+#toggleNewPassword, #toggleConfirmPassword {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.emailContainer {
+    display: inline-block;
+}

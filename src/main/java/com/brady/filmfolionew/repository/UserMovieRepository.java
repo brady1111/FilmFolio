@@ -35,4 +35,13 @@ public class UserMovieRepository {
         );
     }
 
+    //method to remove a movie from a user's saved movies
+    public void removeMovie(int userId, int movieId) {
+        jdbcTemplate.update(
+                "DELETE FROM user_movies WHERE user_id = ? AND movie_id = ?",
+                userId,
+                movieId
+        );
+    }
+
 }

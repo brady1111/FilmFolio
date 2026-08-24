@@ -2,7 +2,7 @@ package com.brady.filmfolionew.entity;
 
 public class MovieEntity {
 
-    private int id;
+    private Integer id;
     private int tmdbId;
     private double rating;
     private String title;
@@ -13,7 +13,7 @@ public class MovieEntity {
     public MovieEntity() {
     }
 
-    public MovieEntity(int id, int tmdbId, double rating, String title,
+    public MovieEntity(Integer id, int tmdbId, double rating, String title,
                        String releaseDate, String posterUrl, String summary) {
         this.id = id;
         this.tmdbId = tmdbId;
@@ -24,11 +24,11 @@ public class MovieEntity {
         this.summary = summary;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

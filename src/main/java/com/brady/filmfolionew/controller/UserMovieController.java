@@ -16,12 +16,20 @@ public class UserMovieController {
         this.userMovieService = userMovieService;
     }
 
-    //method to save a movie for a user
     @PostMapping("/save")
     public void saveMovie(
             @RequestParam int userId,
+            @RequestBody MovieEntity movie) {
+
+        userMovieService.saveMovie(userId, movie);
+    }
+
+    @DeleteMapping("/remove")
+    public void removeMovie(
+            @RequestParam int userId,
             @RequestParam int movieId) {
-        userMovieService.saveMovie(userId, movieId);
+
+        userMovieService.removeMovie(userId, movieId);
     }
 
     //method to get all saved movies for a user

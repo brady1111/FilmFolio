@@ -21,7 +21,7 @@ public class MovieRepository {
         jdbcTemplate.update(
                 "INSERT INTO movies " +
                         "(tmdb_id, title, rating, release_date, poster_url, summary)" +
-                        "VALUES (?,?,?,?,?,?,?)",
+                        "VALUES (?,?,?,?,?,?)",
 
                 movie.getTmdbId(),
                 movie.getTitle(),
@@ -33,5 +33,22 @@ public class MovieRepository {
         );
     }
 
+    //method to find a movie by tmdb_id
+    public MovieEntity getMovieByTmdbId(int tmdbId) {
+        String sql = "SELECT id, tmdb_id, title, rating, release_date, poster_url, summary " +
+                "FROM movies WHERE tmdb_id = ?";
+
+        List<MovieEntity> movies = jdbcTemplate.query(
+                sql,
+                new MovieMapperRepository(),
+                tmdbId
+        );
+
+        if (movies.isEmpty()) {
+            return null;
+        }
+
+        return movies.get(0);
+    }
 }
 

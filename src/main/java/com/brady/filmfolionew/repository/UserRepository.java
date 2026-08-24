@@ -38,4 +38,32 @@ public class UserRepository {
                 String.class, email
         );
     }
+
+    //method to update a user's password
+    public void updatePassword(String email, String password) {
+        jdbcTemplate.update(
+                "UPDATE users SET password = ? WHERE email = ?",
+                password,
+                email
+        );
+    }
+
+    //method to get a user's ID by email
+    public int getUserIdByEmail(String email) {
+        return jdbcTemplate.queryForObject(
+                "SELECT id FROM users WHERE email = ?",
+                Integer.class,
+                email
+        );
+    }
+
+    //method to get a user's email by ID
+    public String getEmailById(int userId) {
+        return jdbcTemplate.queryForObject(
+                "SELECT email FROM users WHERE id = ?",
+                String.class,
+                userId
+        );
+    }
+
 }
