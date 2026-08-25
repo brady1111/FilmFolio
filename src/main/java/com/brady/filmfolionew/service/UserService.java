@@ -30,11 +30,11 @@ public class UserService {
         String hashedPassword = userRepository.getPasswordByEmail(email);
 
         if(hashedPassword == null) {
-            throw new IllegalArgumentException("Invalid email or password");
+            return "Invalid email or password";
         }
 
         if(!passwordEncoder.matches(password, hashedPassword)) {
-            throw new IllegalArgumentException("Invalid email or password");
+            return "Invalid email or password";
         }
 
         return "Login successful";

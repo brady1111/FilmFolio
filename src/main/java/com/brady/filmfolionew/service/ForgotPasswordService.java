@@ -13,23 +13,29 @@ public class ForgotPasswordService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final EmailService emailService;
 
     private final Map<String, ResetToken> resetTokens = new ConcurrentHashMap<>();
 
-    public ForgotPasswordService(UserRepository userRepository,
-                                 PasswordEncoder passwordEncoder) {
+    public ForgotPasswordService(
+            UserRepository userRepository,
+            PasswordEncoder passwordEncoder,
+            EmailService emailService) {
+
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.emailService = emailService;
     }
 
     private static class ResetToken {
+
         private final String email;
         private final long expirationTime;
 
         public ResetToken(String email) {
             this.email = email;
-            this.expirationTime = System.currentTimeMillis()
-                    + (15 * 60 * 1000);
+            this.expirationTime =
+                    System.currentTimeMillis() + (15 * 60 * 1000);
         }
 
         public String getEmail() {
@@ -51,6 +57,12 @@ public class ForgotPasswordService {
 
         resetTokens.put(token, new ResetToken(email));
 
+        String resetLink =
+                "http://localhost:8080/ResetPassword.html?token="
+                        + token;
+
+        emailService.sendPasswordResetEmail(email, resetLink);
+
         return token;
     }
 
@@ -67,7 +79,8 @@ public class ForgotPasswordService {
             return false;
         }
 
-        String hashedPassword = passwordEncoder.encode(newPassword);
+        String hashedPassword =
+                passwordEncoder.encode(newPassword);
 
         userRepository.updatePassword(
                 resetToken.getEmail(),

@@ -3,6 +3,8 @@ package com.brady.filmfolionew.repository;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class UserRepository {
     private final JdbcTemplate jdbcTemplate;
@@ -31,14 +33,6 @@ public class UserRepository {
         );
     }
 
-    //method to get hashed password for an email
-    public String getPasswordByEmail(String email) {
-        return jdbcTemplate.queryForObject(
-                "SELECT password FROM users WHERE email = ?",
-                String.class, email
-        );
-    }
-
     //method to update a user's password
     public void updatePassword(String email, String password) {
         jdbcTemplate.update(
@@ -48,13 +42,21 @@ public class UserRepository {
         );
     }
 
-    //method to get a user's ID by email
-    public int getUserIdByEmail(String email) {
-        return jdbcTemplate.queryForObject(
-                "SELECT id FROM users WHERE email = ?",
-                Integer.class,
+
+    public String getPasswordByEmail(String email) {
+        String sql = "SELECT password FROM users WHERE email = ?";
+
+        List<String> results = jdbcTemplate.query(
+                sql,
+                (rs, rowNum) -> rs.getString("password"),
                 email
         );
+
+        if (results.isEmpty()) {
+            return null;
+        }
+
+        return results.get(0);
     }
 
     //method to get a user's email by ID

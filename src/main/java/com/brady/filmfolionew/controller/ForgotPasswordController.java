@@ -24,7 +24,7 @@ public class ForgotPasswordController {
             return "If an account with that email exists, a reset link has been created.";
         }
 
-        return token;
+        return "If an account with that email exists, a reset link has been sent.";
     }
 
     //reset the password
