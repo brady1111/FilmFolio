@@ -1,0 +1,221 @@
+header {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    gap: 40px;
+}
+
+.logo h1 {
+    margin: 0;
+}
+
+.logo {
+    flex-shrink: 0;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#movieTitle {
+    width: 400px;
+    padding: 12px 15px;
+    font-size: 16px;
+}
+
+#searchButton {
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.userMenu {
+    margin-left: auto;
+}
+
+#userButton {
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 50%;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+#userButton svg {
+    transform: translateX(-8px);
+}
+
+.movieSection {
+    margin-top: 40px;
+    text-align: left;
+}
+
+.movieSection h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+#popularMovies {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+}
+
+.movieCard {
+    min-width: 180px;
+    width: 180px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+}
+
+.movieCard:hover img {
+    transform: scale(1.05);
+}
+
+.movieCard img {
+    width: 100%;
+    height: 270px;
+    object-fit: cover;
+    border-radius: 6px;
+    transition: transform 0.2s ease;
+}
+
+.movieCard h3 {
+    margin-top: 10px;
+    margin-bottom: 0;
+    font-size: 16px;
+    text-align: left;
+    line-height: 1.3;
+    min-height: 42px;
+}
+
+.moviePoster {
+    width: 160px;
+    height: 240px;
+    background-color: #333;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.moviePoster p {
+    color: #aaa;
+}
+
+.movieCard h3 {
+    margin-top: 10px;
+    font-size: 16px;
+    text-align: left;
+}
+
+#popularMovies {
+    scrollbar-width: none;
+}
+
+#popularMovies::-webkit-scrollbar {
+    display: none;
+}
+
+.movieRow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.scrollButton {
+    width: 40px;
+    height: 60px;
+    border: none;
+    border-radius: 8px;
+    background-color: #333;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.scrollButton:hover {
+    background-color: #555;
+}
+
+.movieModal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+    z-index: 1000;
+}
+
+.movieModalContent {
+    position: relative;
+    width: 70%;
+    max-width: 900px;
+    margin: 8% auto;
+    padding: 30px;
+    background-color: #242424;
+    border-radius: 12px;
+    display: flex;
+    gap: 30px;
+}
+
+#modalPoster {
+    width: 250px;
+    height: 375px;
+    object-fit: cover;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.modalDetails {
+    flex: 1;
+}
+
+#modalTitle {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 32px;
+}
+
+#modalRating,
+#modalReleaseDate {
+    font-size: 18px;
+    margin-bottom: 12px;
+}
+
+#modalSummary {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.closeModal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    width: 35px;
+    height: 35px;
+    border: none;
+    border-radius: 50%;
+    background-color: #333;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.closeModal:hover {
+    background-color: #555;
+}

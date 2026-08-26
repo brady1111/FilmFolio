@@ -40,5 +40,10 @@ public class MovieController {
 
         return movie;
     }
+
+    @GetMapping("/popular")
+    public List<MovieDto> popularMovies() {
+        return tmdbService.getPopularMovies();
+    }
 }
 

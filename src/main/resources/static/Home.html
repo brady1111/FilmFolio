@@ -5,21 +5,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FilmFolio</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="Style.css">
+    <link rel="stylesheet" href="Home.css">
 </head>
 
 <body>
-<div class="container">
-    <h1>FilmFolio</h1>
+<header>
+    <div class="logo">
+        <h1>FilmFolio</h1>
+    </div>
+
     <div class="search">
-        <label for ="movieTitle"></label>
+        <label for="movieTitle"></label>
         <input type="text" id="movieTitle" placeholder="Search for a movie...">
         <button id="searchButton">Search</button>
     </div>
 
+    <div class="userMenu">
+        <button id="userButton" aria-label="User menu">
+            <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+            >
+                <circle cx="12" cy="8" r="4"/>
+                <path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/>
+            </svg>
+        </button>
+    </div>
+</header>
+
+<main>
     <p id="message"></p>
 
-    <div id="movieContainer">
+    <section class="movieSection">
+        <h2>Now Popular</h2>
+        <div class="movieRow">
+            <button id="leftButton" class="scrollButton">←</button>
+
+            <div id="popularMovies">
+            </div>
+
+            <button id="rightButton" class="scrollButton">→</button>
+        </div>
+    </section>
+</main>
+
+<div id="movieModal" class="movieModal">
+    <div class="movieModalContent">
+        <button id="closeModal" class="closeModal">×</button>
+        <img id="modalPoster" src="" alt="">
+        <div class="modalDetails">
+            <h2 id="modalTitle"></h2>
+            <p id="modalRating"></p>
+            <p id="modalReleaseDate"></p>
+            <p id="modalSummary"></p>
+            <button id="addTolistButton">Add to List</button>
+        </div>
     </div>
 </div>
 

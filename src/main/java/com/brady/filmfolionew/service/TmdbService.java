@@ -1,7 +1,5 @@
 package com.brady.filmfolionew.service;
 
-//Holds API key
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -31,9 +29,7 @@ public class TmdbService {
 
     //method to search for a movie
     public List<MovieDto> searchMovies(String title) {
-        String url = "https://api.themoviedb.org/3/search/movie"
-                + "?api_key=" + apiKey
-                + "&query=" + title;
+        String url = "https://api.themoviedb.org/3/search/movie" + "?api_key=" + apiKey + "&query=" + title;
         TmdbSearchResponse response = restTemplate.getForObject(url, TmdbSearchResponse.class);
 
         //list that holds movies
@@ -61,11 +57,39 @@ public class TmdbService {
         return movies;
     }
 
+    //method to return list of popular movies
+    public List<MovieDto> getPopularMovies() {
+        String url = "https://api.themoviedb.org/3/movie/popular" + "?api_key=" + apiKey;
+        TmdbSearchResponse response = restTemplate.getForObject(url, TmdbSearchResponse.class);
+
+        //new list of movies
+        List<MovieDto> movies = new ArrayList<>();
+
+        //loop through each movie in the results
+        for (TmdbMovie tmdbMovie : response.getResults()) {
+            //new movie object for each movie
+            MovieDto movie = new MovieDto();
+
+            //get information for each movie
+            movie.setId(tmdbMovie.getId());
+            movie.setTitle(tmdbMovie.getTitle());
+            movie.setSummary(tmdbMovie.getOverview());
+            movie.setReleaseDate(tmdbMovie.getReleaseDate());
+            movie.setRating(tmdbMovie.getVoteAverage());
+            movie.setPosterUrl(IMAGE_BASE_URL + tmdbMovie.getPosterPath());
+
+            //add each movie to the movies list
+            movies.add(movie);
+        }
+        return movies;
+    }
+
     public TmdbMovie getMovieId(int id) {
 
         String url = "https://api.themoviedb.org/3/movie/" + id + "?api_key=" + apiKey;
 
         return restTemplate.getForObject(url, TmdbMovie.class);
     }
+
 }
 
