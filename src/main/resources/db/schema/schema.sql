@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS users (
         id BIGINT PRIMARY KEY AUTO_INCREMENT,
         email VARCHAR(255) NOT NULL UNIQUE,
         password VARCHAR(255) NOT NULL
-    );
+);
 
 CREATE TABLE IF NOT EXISTS movies (
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
@@ -29,3 +29,18 @@ CREATE TABLE IF NOT EXISTS password_reset_tokens (
     expires_at TIMESTAMP NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
+
+CREATE TABLE IF NOT EXISTS movie_lists (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    user_id BIGINT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE IF NOT EXISTS list_movies (
+    list_id BIGINT NOT NULL,
+    movie_id BIGINT NOT NULL,
+    PRIMARY KEY (list_id, movie_id),
+    FOREIGN KEY (list_id) REFERENCES movie_lists(id),
+    FOREIGN KEY (movie_id) REFERENCES movies(id)
+    );

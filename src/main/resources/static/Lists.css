@@ -1,0 +1,215 @@
+.listsSection {
+    width: 80%;
+    max-width: 1100px;
+    margin: 60px auto;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    border-radius: 15px;
+}
+
+.listsHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.listsHeader h2 {
+    margin: 0;
+    font-size: 30px;
+}
+
+#createListButton {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: #222222;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+#createListButton:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+#listsContainer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.listCard {
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.listCard:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.listCard h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.listCard p {
+    margin: 0;
+    opacity: 0.7;
+}
+
+.createListModal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+}
+
+.createListContent {
+    position: relative;
+    width: 400px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    border-radius: 15px;
+}
+
+.createListContent h2 {
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+
+.createListContent label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 15px;
+}
+
+#listName {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+#saveListButton {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: #222222;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+#saveListButton:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+.closeCreateList {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 50%;
+    background-color: #333;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.closeCreateList:hover {
+    background-color: #555;
+}
+
+#selectedListContainer {
+    margin-top: 40px;
+}
+
+#selectedListContainer h2 {
+    margin-bottom: 20px;
+    font-size: 26px;
+}
+
+.listMovieCard {
+    padding: 20px;
+    margin-bottom: 15px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    transition: 0.2s ease;
+}
+
+.listMovieCard:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.listMovieCard h3 {
+    margin: 0 0 8px 0;
+}
+
+.listMovieCard p {
+    margin: 0;
+    opacity: 0.7;
+}
+
+.listMovieRow {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 10px 5px 20px 5px;
+    scroll-behavior: smooth;
+}
+
+.listMovieRow::-webkit-scrollbar {
+    height: 8px;
+}
+
+.listMovieRow::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}
+
+.listMovieRow .movieCard {
+    flex: 0 0 180px;
+    cursor: pointer;
+}
+
+.listMovieRow .movieCard img {
+    width: 180px;
+    height: 270px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.listMovieRow .movieCard h3 {
+    margin-top: 10px;
+    font-size: 16px;
+}

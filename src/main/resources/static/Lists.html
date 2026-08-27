@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Lists - FilmFolio</title>
+
+    <link rel="stylesheet" href="Style.css">
+    <link rel="stylesheet" href="Lists.css">
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        <h1>FilmFolio</h1>
+    </div>
+
+    <div class="userMenu">
+        <button id="userButton" aria-label="User menu">
+            <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+            >
+                <circle cx="12" cy="8" r="4"/>
+                <path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/>
+            </svg>
+        </button>
+    </div>
+
+</header>
+
+<main>
+    <section class="listsSection">
+        <div class="listsHeader">
+            <h2>My Lists</h2>
+            <button id="createListButton"> + Create New List</button>
+        </div>
+
+        <div id="listsContainer">
+            <div class="listCard" id="favoritesList">
+                <h3>Favorites</h3>
+                <p>0 / 5 movies</p>
+                <p class="listDescription">Your top 5 favorite movies.</p>
+            </div>
+        </div>
+
+        <div id="selectedListContainer"></div>
+
+    </section>
+
+    <div id="createListModal" class="createListModal">
+        <div class="createListContent">
+            <button id="closeCreateList" class="closeCreateList">×</button>
+            <h2>Create New List</h2>
+            <label for="listName">List Name</label>
+            <input type="text" id="listName" placeholder="Enter list name...">
+            <button id="saveListButton"> Create List</button>
+        </div>
+    </div>
+
+</main>
+
+<script src="Lists.js"></script>
+
+</body>
+</html>
