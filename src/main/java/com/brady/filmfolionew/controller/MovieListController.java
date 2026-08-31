@@ -3,6 +3,7 @@ package com.brady.filmfolionew.controller;
 import com.brady.filmfolionew.service.MovieListService;
 import org.springframework.web.bind.annotation.*;
 import com.brady.filmfolionew.entity.MovieListEntity;
+import com.brady.filmfolionew.dto.MovieDto;
 
 import java.util.Map;
 import java.util.List;
@@ -32,8 +33,8 @@ public class MovieListController {
     @PostMapping("/movies")
     public void addMovieToList(
             @RequestParam Long listId,
-            @RequestParam Long movieId) {
-        movieListService.addMovieToList(listId, movieId);
+            @RequestBody MovieDto movie) {
+        movieListService.addMovieToList(listId, movie);
     }
 
     @GetMapping("/movies")

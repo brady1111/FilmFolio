@@ -9,8 +9,7 @@ const popularMovies = document.getElementById("popularMovies");
 //get the left and right scroll buttons
 const leftButton = document.getElementById("leftButton");
 const rightButton = document.getElementById("rightButton");
-//hide the leftButton until needed
-leftButton.style.visibility = "hidden";
+leftButton.style.visibility = "hidden"; //hide the leftButton until needed
 
 //elements for the movie modal (pop-up)
 const movieModal = document.getElementById("movieModal");
@@ -24,11 +23,17 @@ const modalSummary = document.getElementById("modalSummary");
 //element for adding movie to watchlist
 const addToListButton = document.getElementById("addToListButton");
 
+//get the list selection container
+const listSelection = document.getElementById("listSelection");
+
+//holds the movie that is currently selected
+let selectedMovie = null;
+
 //call function when the search button is clicked
 searchButton.addEventListener("click", searchMovies);
 //activate function when the enter key is pressed
 searchBox.addEventListener("keydown", function(event) {
-    if (event.key === "Enter") { //check if the key pressed was "Enter"
+    if(event.key === "Enter") { //check if the key pressed was "Enter"
         searchMovies(); //function call
     }
 });
@@ -55,11 +60,9 @@ async function loadPopularMovies() { //will be able to wait on backend request
         const movies = await response.json();
 
         //loop through the results
-        for (const movie of movies) {
+        for(const movie of movies) {
             const movieCard = document.createElement("div");
-
             movieCard.classList.add("movieCard");
-
             const poster = document.createElement("img");
             //load each poster
             poster.src = movie.posterUrl;
@@ -68,39 +71,19 @@ async function loadPopularMovies() { //will be able to wait on backend request
 
             //when a movieCard is clicked, open a modal that displays the movie info
             movieCard.addEventListener("click", function() {
+                selectedMovie = movie;
                 modalPoster.src = movie.posterUrl;
                 modalTitle.textContent = movie.title;
                 modalRating.textContent = "★ " + movie.rating;
                 modalReleaseDate.textContent = "Release Date: " + movie.releaseDate;
                 modalSummary.textContent = movie.summary;
                 movieModal.style.display = "block";
+                listSelection.innerHTML = "";
             });
-
-            //when the x is pressed close the modal
-            closeModal.addEventListener("click", function() {
-                movieModal.style.display = "none";
-            });
-
-            //when anything outside of the modal is clicked close the modal
-            movieModal.addEventListener("click", function(event) {
-
-                if (event.target === movieModal) {
-                    movieModal.style.display = "none";
-                }
-
-            });
-
-            //when the "add to list" button is pressed add the movie to the user's choice of list
-            addToListButton.addEventListener("click", function() {
-                console.log("Add to Watchlist clicked");
-            });
-
             popularMovies.appendChild(movieCard);
-
             const title = document.createElement("h3");
             title.textContent = movie.title;
             movieCard.appendChild(title);
-            popularMovies.appendChild(movieCard);
 
             updateScrollButtons();
         }
@@ -109,18 +92,88 @@ async function loadPopularMovies() { //will be able to wait on backend request
     }
 }
 
+//when the x is pressed close the modal
+closeModal.addEventListener("click", function() {
+    movieModal.style.display = "none";
+});
+
+//when anything outside of the modal is clicked close the modal
+movieModal.addEventListener("click", function(event) {
+    if(event.target === movieModal) {
+        movieModal.style.display = "none";
+    }
+});
+
+//when the "add to list" button is pressed add the movie to the user's choice of list
+addToListButton.addEventListener("click", async function() {
+    if(selectedMovie === null) {
+        alert("Please select a movie first.");
+        return;
+    }
+
+    try{
+        const response = await fetch(
+            "http://localhost:8080/lists?userId=1"
+        );
+        if(!response.ok) {
+            throw new Error("Failed to load lists");
+        }
+        const lists = await response.json();
+        listSelection.innerHTML = "";
+        const listTitle = document.createElement("p");
+        listTitle.textContent = "Choose a list:";
+        listSelection.appendChild(listTitle);
+
+        lists.forEach(list => {
+            const listButton = document.createElement("button");
+            listButton.textContent = list.name;
+            listButton.addEventListener("click", async function() {
+                try{
+                    const response = await fetch(
+                        `http://localhost:8080/lists/movies?listId=${list.id}`,
+{
+    method: "POST",
+        headers: {
+    "Content-Type": "application/json"
+},
+    body: JSON.stringify(selectedMovie)
+}
+);
+
+if(!response.ok) {
+    throw new Error("Failed to add movie to list");
+}
+
+alert("Movie added to " + list.name);
+listSelection.innerHTML = "";
+
+}catch(error) {
+    console.error("Error adding movie to list:", error);
+    alert("There was a problem adding the movie to your list.");
+}
+});
+
+listSelection.appendChild(listButton);
+});
+
+}catch(error) {
+    console.error("Error loading lists:", error);
+    alert("There was a problem loading your lists.");
+}
+});
+
 //function to update the buttons as needed
 function updateScrollButtons() {
 
-    if (popularMovies.scrollLeft > 0) {
+    if(popularMovies.scrollLeft > 0) {
         leftButton.style.visibility = "visible";
-    } else {
+    }else{
         leftButton.style.visibility = "hidden";
     }
 
-    if (popularMovies.scrollLeft + popularMovies.clientWidth >= popularMovies.scrollWidth - 1) {
+    if(popularMovies.scrollLeft + popularMovies.clientWidth >= popularMovies.scrollWidth - 1) {
         rightButton.style.visibility = "hidden";
-    } else {
+    }else{
         rightButton.style.visibility = "visible";
     }
 }
@@ -136,7 +189,6 @@ function searchMovies() {
         return;
     }
     message.textContent = "";
-
 }
 
 loadPopularMovies();

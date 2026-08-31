@@ -117,7 +117,7 @@ async function loadListMovies(listId, listName) {
         const response = await fetch(
             `http://localhost:8080/lists/movies?listId=${listId}`
         );
-        if(!response.ok) {
+        if (!response.ok) {
             throw new Error("Failed to load list movies");
         }
         const movies = await response.json();
@@ -137,7 +137,7 @@ async function loadListMovies(listId, listName) {
         movies.forEach(movie => {
 
             const movieCard = document.createElement("div");
-            movieCard.className = "listMovieCard";
+            movieCard.className = "movieCard";
 
             const poster = document.createElement("img");
             poster.src = movie.POSTER_URL;
@@ -153,12 +153,12 @@ async function loadListMovies(listId, listName) {
 
             movieCard.appendChild(movieTitle);
             movieCard.appendChild(rating);
-            selectedListContainer.appendChild(movieCard);
+            movieRow.appendChild(movieCard);
         });
 
         selectedListContainer.appendChild(movieRow);
 
-    }catch(error) {
+    } catch (error) {
         console.error("Error loading list movies:", error);
     }
 }
