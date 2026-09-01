@@ -224,3 +224,132 @@ header {
 .closeModal:hover {
     background-color: #555;
 }
+
+.userMenu {
+    position: relative;
+    margin-left: auto;
+}
+
+.userDropdown {
+    display: none;
+    position: absolute;
+    top: 55px;
+    right: 0;
+    width: 180px;
+    padding: 10px;
+    background: #242424;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+}
+
+.userDropdown button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background: transparent;
+    color: white;
+    text-align: left;
+    font-size: 15px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.userDropdown button:hover {
+    background: #333;
+}
+
+.createListModal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+}
+
+.createListContent {
+    position: relative;
+    width: 400px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    border-radius: 15px;
+}
+
+.createListContent h2 {
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+
+.createListContent label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 15px;
+}
+
+#listName {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+#saveListButton {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: #222222;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.closeCreateList {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 50%;
+    background-color: #333;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.closeCreateList:hover {
+    background-color: #555;
+}
+
+#createListModal .createListContent {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+#createListModal #listSummary {
+    min-height: 100px;
+    resize: vertical;
+    padding: 10px;
+    margin-bottom: 12px;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+#createListModal #saveListButton {
+    margin-top: 8px;
+}

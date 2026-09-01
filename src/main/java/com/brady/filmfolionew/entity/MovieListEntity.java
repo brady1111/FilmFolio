@@ -8,7 +8,7 @@ public class MovieListEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    private String summary;
     private String name;
 
     @ManyToOne
@@ -16,6 +16,15 @@ public class MovieListEntity {
     private UserEntity user;
 
     public MovieListEntity() {
+    }
+
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
     }
 
     public Long getId() {

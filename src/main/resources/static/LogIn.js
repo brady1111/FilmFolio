@@ -37,6 +37,7 @@ loginButton.addEventListener("click", async function () {
     formData.append("password", passwordValue);
 
     try {
+
         const response = await fetch("http://localhost:8080/login", {
             method: "POST",
             headers: {
@@ -45,23 +46,25 @@ loginButton.addEventListener("click", async function () {
             body: formData
         });
 
-        const result = await response.text();
+        const result = await response.json();
 
-        if (response.ok) {
+        if (response.ok && result.success) {
 
-            if (result === "Login successful") {
-                window.location.href = "Home.html";
-            } else {
-                loginError.textContent = result;
-            }
+            //save the logged-in user's ID
+            localStorage.setItem("userId", result.userId);
 
-        } else {
-            loginError.textContent = result;
+            //go to the home page
+            window.location.href = "Home.html";
+
+        }else{
+
+            loginError.textContent = result.message;
         }
-
     } catch (error) {
+
         console.error(error);
         loginError.textContent = "Could not connect to the server.";
+
     }
 });
 

@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Map;
+
 @RestController
 public class UserController {
     private final UserService userService;
@@ -23,9 +25,9 @@ public class UserController {
         userService.signup(email, password); //pass to service
     }
 
-    //POST request for login
+//POST request for login
     @PostMapping("/login")
-    public String login(
+    public Map<String, Object> login(
             @RequestParam String email,
             @RequestParam String password
     ) {

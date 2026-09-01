@@ -22,6 +22,7 @@
     </div>
 
     <div class="userMenu">
+
         <button id="userButton" aria-label="User menu">
             <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -38,6 +39,23 @@
                 <path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/>
             </svg>
         </button>
+
+        <div id="userDropdown" class="userDropdown">
+
+            <button id="myListsButton">
+                My Lists
+            </button>
+
+            <button id="createListButton">
+                Create New List
+            </button>
+
+            <button id="logoutButton">
+                Log Out
+            </button>
+
+        </div>
+
     </div>
 </header>
 
@@ -46,30 +64,75 @@
 
     <section class="movieSection">
         <h2>Trending Now</h2>
+
         <div class="movieRow">
+
             <button id="leftButton" class="scrollButton">←</button>
 
             <div id="popularMovies">
             </div>
 
             <button id="rightButton" class="scrollButton">→</button>
+
         </div>
     </section>
 </main>
 
 <div id="movieModal" class="movieModal">
+
     <div class="movieModalContent">
+
         <button id="closeModal" class="closeModal">×</button>
+
         <img id="modalPoster" src="" alt="">
+
         <div class="modalDetails">
+
             <h2 id="modalTitle"></h2>
+
             <p id="modalRating"></p>
+
             <p id="modalReleaseDate"></p>
+
             <p id="modalSummary"></p>
+
             <button id="addToListButton">Add to List</button>
+
             <div id="listSelection"></div>
+
         </div>
+
     </div>
+
+</div>
+
+<div id="createListModal" class="createListModal">
+
+    <div class="createListContent">
+
+        <button id="closeCreateList" class="closeCreateList">×</button>
+
+        <h2>Create New List</h2>
+
+        <label for="listName">List Name</label>
+
+        <input
+                type="text"
+                id="listName"
+                placeholder="Enter list name..."
+        >
+
+        <label for="listSummary">List Summary</label>
+
+        <textarea
+                id="listSummary"
+                placeholder="Enter a summary for your list..."
+        ></textarea>
+
+        <button id="saveListButton">Create List</button>
+
+    </div>
+
 </div>
 
 <script src="Home.js"></script>

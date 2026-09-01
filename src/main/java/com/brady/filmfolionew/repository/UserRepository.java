@@ -68,4 +68,13 @@ public class UserRepository {
         );
     }
 
+    //method to get a user's ID by email
+    public int getUserIdByEmail(String email) {
+        return jdbcTemplate.queryForObject(
+                "SELECT id FROM users WHERE email = ?",
+                Integer.class,
+                email
+        );
+    }
+
 }

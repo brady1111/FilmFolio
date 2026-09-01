@@ -213,3 +213,137 @@
     margin-top: 10px;
     font-size: 16px;
 }
+
+#createListModal .createListContent {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+#createListModal #listSummary {
+    min-height: 100px;
+    resize: vertical;
+    padding: 10px;
+    margin-bottom: 12px;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+#createListModal #saveListButton {
+    margin-top: 8px;
+}
+
+   .listMovieRow .movieCard {
+       width: 160px;
+   }
+
+.listMovieRow .movieCard img {
+    width: 160px;
+    height: 240px;
+    object-fit: cover;
+}
+
+.listMovieRow .movieCard button {
+    margin-top: 10px;
+}
+
+.movieModal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+}
+
+.movieModalContent {
+    position: relative;
+    display: flex;
+    gap: 30px;
+    width: 700px;
+    max-width: 90%;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    border-radius: 15px;
+}
+
+.movieModalContent img {
+    width: 250px;
+    height: 375px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.modalDetails {
+    flex: 1;
+}
+
+.modalDetails h2 {
+    margin-top: 0;
+    font-size: 28px;
+}
+
+.modalDetails p {
+    margin-bottom: 15px;
+}
+
+.closeModal {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 50%;
+    background-color: #333;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.closeModal:hover {
+    background-color: #555;
+}
+
+#removeFromListButton {
+    margin-top: 20px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: #222222;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#removeFromListButton:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+#closeMovieModal {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background-color: #333;
+    color: white;
+    font-size: 22px;
+    line-height: 32px;
+    text-align: center;
+    cursor: pointer;
+}
+
+#closeMovieModal:hover {
+    background-color: #555;
+}

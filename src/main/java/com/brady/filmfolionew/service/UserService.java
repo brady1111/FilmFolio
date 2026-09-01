@@ -4,6 +4,8 @@ import com.brady.filmfolionew.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.util.Map;
+
 @Service
 public class UserService {
     private final UserRepository userRepository;
@@ -19,24 +21,31 @@ public class UserService {
         if(userRepository.emailExists(email)) {
             throw new IllegalArgumentException("Email is already registered");
         }
-
         String hashedPassword = passwordEncoder.encode(password);
-
         userRepository.saveUser(email, hashedPassword);
     }
 
-    //method to check login credentials
-    public String login(String email, String password) {
+    public Map<String, Object> login(String email, String password) {
         String hashedPassword = userRepository.getPasswordByEmail(email);
 
         if(hashedPassword == null) {
-            return "Invalid email or password";
+            return Map.of(
+                    "success", false,
+                    "message", "Invalid email or password"
+            );
         }
 
         if(!passwordEncoder.matches(password, hashedPassword)) {
-            return "Invalid email or password";
+            return Map.of(
+                    "success", false,
+                    "message", "Invalid email or password"
+            );
         }
-
-        return "Login successful";
+        int userId = userRepository.getUserIdByEmail(email);
+        return Map.of(
+                "success", true,
+                "message", "Login successful",
+                "userId", userId
+        );
     }
 }
