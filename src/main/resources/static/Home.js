@@ -47,6 +47,8 @@ const listName = document.getElementById("listName");
 const listSummary = document.getElementById("listSummary");
 const saveListButton = document.getElementById("saveListButton");
 
+const addToFavoritesButton = document.getElementById("addToFavoritesButton");
+
 //open and close the user dropdown
 userButton.addEventListener("click", function(event) {
     event.stopPropagation();
@@ -148,6 +150,40 @@ rightButton.addEventListener("click", function() {
 
     });
 
+});
+
+//when Add to Favorites is pressed
+addToFavoritesButton.addEventListener("click", async function() {
+    if(selectedMovie === null) {
+        alert("Please select a movie first.");
+        return;
+    }
+
+    try {
+        const response = await fetch(
+            `http://localhost:8080/lists/favorites?userId=${userId}`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(selectedMovie)
+            }
+        );
+
+        if(!response.ok) {
+            const errorMessage = await response.text();
+            alert(errorMessage);
+            return;
+        }
+
+        alert(selectedMovie.title + " was added to Favorites.");
+        movieModal.style.display = "none";
+
+    }catch(error) {
+        console.error("Error adding movie to Favorites:", error);
+        alert("There was a problem adding the movie to Favorites.");
+    }
 });
 
 //load popular movies

@@ -347,3 +347,33 @@
 #closeMovieModal:hover {
     background-color: #555;
 }
+
+.listButtons {
+    display: flex;
+    gap: 10px;
+}
+
+.listButtons button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: #222222;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.listButtons button:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+.movieActionButton {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+}

@@ -50,7 +50,7 @@
         <div id="listsContainer">
             <div class="listCard" id="favoritesList">
                 <h3>Favorites</h3>
-                <p>0 / 5 movies</p>
+                <p id="favoritesCount">0 / 5 movies</p>
                 <p class="listDescription">Your top 5 favorite movies.</p>
             </div>
         </div>
@@ -69,11 +69,7 @@
 
             <label for="listName">List Name</label>
 
-            <input
-                    type="text"
-                    id="listName"
-                    placeholder="Enter list name..."
-            >
+            <input type="text" id="listName" placeholder="Enter list name...">
 
             <label for="listSummary">List Summary</label>
 
@@ -88,36 +84,57 @@
 
     </div>
 
-    <div id="movieModal" class="movieModal">
+    <div id="editListModal" class="createListModal">
 
-        <div class="movieModalContent">
+        <div class="createListContent">
 
-            <button id="closeMovieModal" class="closeModal">×</button>
+            <button id="closeEditList" class="closeCreateList">×</button>
 
-            <img id="modalPoster" src="" alt="">
+            <h2>Edit List</h2>
 
-            <div class="modalDetails">
+            <label for="editListName">List Name</label>
 
-                <h2 id="modalTitle"></h2>
+            <input
+                    type="text"
+                    id="editListName"
+                    placeholder="Enter list name..."
+            >
 
-                <p id="modalRating"></p>
+            <label for="editListSummary">List Summary</label>
 
-                <p id="modalReleaseDate"></p>
+            <textarea
+                    id="editListSummary"
+                    placeholder="Enter a summary for your list..."
+            ></textarea>
 
-                <p id="modalSummary"></p>
-
-                <button id="removeFromListButton">Remove from List</button>
-
-            </div>
+            <button id="saveEditListButton">Save Changes</button>
 
         </div>
 
     </div>
 
+    <div id="movieModal" class="movieModal">
+
+        <div class="movieModalContent">
+            <button id="closeMovieModal" class="closeModal">×</button>
+            <img id="modalPoster" src="" alt="">
+
+            <div class="modalDetails">
+                <h2 id="modalTitle"></h2>
+
+                <p id="modalRating"></p>
+                <p id="modalReleaseDate"></p>
+                <p id="modalSummary"></p>
+
+                <button id="addToFavoritesButton" class="movieActionButton">Add to Favorites</button>
+                <button id="removeFromListButton" class="movieActionButton">Remove from List</button>
+
+            </div>
+        </div>
+    </div>
 </main>
 
 <script src="Lists.js"></script>
 
 </body>
-
 </html>
