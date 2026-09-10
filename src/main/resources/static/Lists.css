@@ -1,3 +1,61 @@
+header {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    gap: 40px;
+}
+
+.logo {
+    flex-shrink: 0;
+}
+
+.userMenu {
+    position: relative;
+    margin-left: auto;
+}
+
+#userButton {
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 50%;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+#userButton svg {
+    transform: translateX(-8px);
+}
+
+.userDropdown {
+    display: none;
+    position: absolute;
+    top: 55px;
+    right: 0;
+    width: 180px;
+    padding: 10px;
+    background: #242424;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+}
+
+.userDropdown button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background: transparent;
+    color: white;
+    text-align: left;
+    font-size: 15px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.userDropdown button:hover {
+    background: #333;
+}
+
 .listsSection {
     width: 80%;
     max-width: 1100px;
@@ -148,6 +206,25 @@
     background-color: #555;
 }
 
+#createListModal .createListContent {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+#createListModal #listSummary {
+    min-height: 100px;
+    resize: vertical;
+    padding: 10px;
+    margin-bottom: 12px;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+#createListModal #saveListButton {
+    margin-top: 8px;
+}
+
 #selectedListContainer {
     margin-top: 40px;
 }
@@ -198,49 +275,20 @@
 }
 
 .listMovieRow .movieCard {
-    flex: 0 0 180px;
+    width: 160px;
+    flex: 0 0 160px;
     cursor: pointer;
 }
-
-.listMovieRow .movieCard img {
-    width: 180px;
-    height: 270px;
-    object-fit: cover;
-    border-radius: 10px;
-}
-
-.listMovieRow .movieCard h3 {
-    margin-top: 10px;
-    font-size: 16px;
-}
-
-#createListModal .createListContent {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-#createListModal #listSummary {
-    min-height: 100px;
-    resize: vertical;
-    padding: 10px;
-    margin-bottom: 12px;
-    font-family: inherit;
-    font-size: 14px;
-}
-
-#createListModal #saveListButton {
-    margin-top: 8px;
-}
-
-   .listMovieRow .movieCard {
-       width: 160px;
-   }
 
 .listMovieRow .movieCard img {
     width: 160px;
     height: 240px;
     object-fit: cover;
+}
+
+.listMovieRow .movieCard h3 {
+    margin-top: 10px;
+    font-size: 16px;
 }
 
 .listMovieRow .movieCard button {

@@ -6,13 +6,24 @@ const searchButton = document.getElementById("searchButton");
 const searchBox = document.getElementById("movieTitle");
 const message = document.getElementById("message");
 
+//elements for search results
+const searchResultsSection = document.getElementById("searchResultsSection");
+const searchResultsTitle = document.getElementById("searchResultsTitle");
+const searchResults = document.getElementById("searchResults");
+searchResultsSection.style.display = "none";
+
 //get the popular movies container
 const popularMovies = document.getElementById("popularMovies");
 
-//get the left and right scroll buttons
+//get the left and right scroll buttons for trending now
 const leftButton = document.getElementById("leftButton");
 const rightButton = document.getElementById("rightButton");
 
+//get the search result scroll buttons
+const searchLeftButton = document.getElementById("searchLeftButton");
+const searchRightButton = document.getElementById("searchRightButton");
+
+searchLeftButton.style.visibility = "hidden";
 leftButton.style.visibility = "hidden";
 
 //elements for the movie modal
@@ -133,6 +144,7 @@ searchBox.addEventListener("keydown", function(event) {
     if(event.key === "Enter") {
         searchMovies();
     }
+    searchBox.textContent = "";
 });
 
 //implement the scroll buttons
@@ -149,7 +161,21 @@ rightButton.addEventListener("click", function() {
         behavior: "smooth"
 
     });
+});
 
+//implement the search result scroll buttons
+searchLeftButton.addEventListener("click", function() {
+    searchResults.scrollBy({
+        left: -400,
+        behavior: "smooth"
+    });
+});
+
+searchRightButton.addEventListener("click", function() {
+    searchResults.scrollBy({
+        left: 400,
+        behavior: "smooth"
+    });
 });
 
 //when Add to Favorites is pressed
@@ -335,19 +361,88 @@ function updateScrollButtons() {
     }
 }
 
-popularMovies.addEventListener(
-    "scroll",
-    updateScrollButtons
-);
+//update search result scroll buttons
+function updateSearchScrollButtons() {
+    if(searchResults.scrollLeft > 0) {
+        searchLeftButton.style.visibility = "visible";
+    }else{
+        searchLeftButton.style.visibility = "hidden";
+    }
+
+    if(searchResults.scrollLeft + searchResults.clientWidth >= searchResults.scrollWidth - 1) {
+        searchRightButton.style.visibility = "hidden";
+    }else{
+        searchRightButton.style.visibility = "visible";
+    }
+}
+
+popularMovies.addEventListener("scroll", updateScrollButtons);
+searchResults.addEventListener("scroll", updateSearchScrollButtons);
 
 //search for movies
-function searchMovies() {
+async function searchMovies() {
     const movieTitle = searchBox.value.trim();
     if(movieTitle === "") {
         message.textContent = "Please enter a movie title";
         return;
     }
     message.textContent = "";
+
+    try {
+        const response = await fetch(`http://localhost:8080/search?title=${encodeURIComponent(movieTitle)}`);
+
+        if (!response.ok) {
+            throw new Error("Failed to search for movies");
+        }
+
+        const movies = await response.json();
+        searchBox.value = "";
+        searchResults.innerHTML = "";
+
+        if(movies.length === 0) {
+            searchResultsTitle.textContent = 'No movies found for "' + movieTitle + '"';
+            searchResultsSection.style.display = "block";
+            return;
+        }
+
+        searchResultsTitle.textContent = 'Search Results for "' + movieTitle + '"';
+        searchResultsSection.style.display = "block";
+
+        for (const movie of movies) {
+            const movieCard = document.createElement("div");
+            movieCard.classList.add("movieCard");
+
+            //movie poster
+            const poster = document.createElement("img");
+            poster.src = movie.posterUrl;
+            poster.alt = movie.title;
+            movieCard.appendChild(poster);
+
+            //movie title
+            const title = document.createElement("h3");
+            title.textContent = movie.title;
+            movieCard.appendChild(title);
+
+            //open movie modal
+            movieCard.addEventListener("click", function() {
+                selectedMovie = movie;
+                modalPoster.src = movie.posterUrl;
+                modalPoster.alt = movie.title;
+                modalTitle.textContent = movie.title;
+                modalRating.textContent = "★ " + movie.rating;
+                modalReleaseDate.textContent = "Release Date: " + movie.releaseDate;
+                modalSummary.textContent = movie.summary;
+                listSelection.innerHTML = "";
+                movieModal.style.display = "block";
+            });
+            searchResults.appendChild(movieCard);
+        }
+
+        updateSearchScrollButtons();
+
+    }catch(error) {
+        console.error("Error searching for movies:", error);
+    }
 }
 
 //load movies when page opens

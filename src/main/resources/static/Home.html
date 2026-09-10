@@ -5,25 +5,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FilmFolio</title>
+
     <link rel="stylesheet" href="Style.css">
     <link rel="stylesheet" href="Home.css">
 </head>
 
 <body>
+
 <header>
+
     <div class="logo">
         <h1>FilmFolio</h1>
     </div>
 
     <div class="search">
+
         <label for="movieTitle"></label>
-        <input type="text" id="movieTitle" placeholder="Search for a movie...">
-        <button id="searchButton">Search</button>
+
+        <input
+                type="text"
+                id="movieTitle"
+                placeholder="Search for a movie..."
+        >
+
+        <button id="searchButton">
+            Search
+        </button>
+
     </div>
 
     <div class="userMenu">
 
         <button id="userButton" aria-label="User menu">
+
             <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="22"
@@ -38,6 +52,7 @@
                 <circle cx="12" cy="8" r="4"/>
                 <path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/>
             </svg>
+
         </button>
 
         <div id="userDropdown" class="userDropdown">
@@ -57,32 +72,62 @@
         </div>
 
     </div>
+
 </header>
 
 <main>
+
     <p id="message"></p>
 
+    <section id="searchResultsSection" class="movieSection">
+
+        <h2 id="searchResultsTitle"></h2>
+
+        <div class="movieRow">
+
+            <button id="searchLeftButton" class="scrollButton">
+                ←
+            </button>
+
+            <div id="searchResults"></div>
+
+            <button id="searchRightButton" class="scrollButton">
+                →
+            </button>
+
+        </div>
+
+    </section>
+
     <section class="movieSection">
+
         <h2>Trending Now</h2>
 
         <div class="movieRow">
 
-            <button id="leftButton" class="scrollButton">←</button>
+            <button id="leftButton" class="scrollButton">
+                ←
+            </button>
 
-            <div id="popularMovies">
-            </div>
+            <div id="popularMovies"></div>
 
-            <button id="rightButton" class="scrollButton">→</button>
+            <button id="rightButton" class="scrollButton">
+                →
+            </button>
 
         </div>
+
     </section>
+
 </main>
 
 <div id="movieModal" class="movieModal">
 
     <div class="movieModalContent">
 
-        <button id="closeModal" class="closeModal">×</button>
+        <button id="closeModal" class="closeModal">
+            ×
+        </button>
 
         <img id="modalPoster" src="" alt="">
 
@@ -96,8 +141,13 @@
 
             <p id="modalSummary"></p>
 
-            <button id="addToListButton">Add to List</button>
-            <button id="addToFavoritesButton">Add to Favorites</button>
+            <button id="addToListButton">
+                Add to List
+            </button>
+
+            <button id="addToFavoritesButton">
+                Add to Favorites
+            </button>
 
             <div id="listSelection"></div>
 
@@ -111,11 +161,15 @@
 
     <div class="createListContent">
 
-        <button id="closeCreateList" class="closeCreateList">×</button>
+        <button id="closeCreateList" class="closeCreateList">
+            ×
+        </button>
 
         <h2>Create New List</h2>
 
-        <label for="listName">List Name</label>
+        <label for="listName">
+            List Name
+        </label>
 
         <input
                 type="text"
@@ -123,14 +177,18 @@
                 placeholder="Enter list name..."
         >
 
-        <label for="listSummary">List Summary</label>
+        <label for="listSummary">
+            List Summary
+        </label>
 
         <textarea
                 id="listSummary"
                 placeholder="Enter a summary for your list..."
         ></textarea>
 
-        <button id="saveListButton">Create List</button>
+        <button id="saveListButton">
+            Create List
+        </button>
 
     </div>
 

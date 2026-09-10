@@ -57,6 +57,41 @@ const editListName = document.getElementById("editListName");
 const editListSummary = document.getElementById("editListSummary");
 const saveEditListButton = document.getElementById("saveEditListButton");
 
+//get the user menu elements
+const userButton = document.getElementById("userButton");
+const userDropdown = document.getElementById("userDropdown");
+const homeButton = document.getElementById("homeButton");
+const logoutButton = document.getElementById("logoutButton");
+
+//open and close the user dropdown
+userButton.addEventListener("click", function(event) {
+    event.stopPropagation();
+
+    if(userDropdown.style.display === "block") {
+        userDropdown.style.display = "none";
+    }else{
+        userDropdown.style.display = "block";
+    }
+});
+
+//close the dropdown when clicking anywhere else
+document.addEventListener("click", function(event) {
+    if(!userDropdown.contains(event.target) &&
+        event.target !== userButton) {
+        userDropdown.style.display = "none";
+    }
+});
+
+//go back to the home page
+homeButton.addEventListener("click", function() {
+    window.location.href = "Home.html";
+});
+
+//logout
+logoutButton.addEventListener("click", function() {
+    window.location.href = "LogIn.html";
+});
+
 //open the create list modal
 createListButton.addEventListener("click", function() {
     createListModal.style.display = "flex";
@@ -653,5 +688,6 @@ removeFromListButton.addEventListener("click", async function() {
         alert("There was a problem removing the movie from your list.");
     }
 });
-//load lists when the page opens
+//load lists and load favorites when the page opens
+loadFavorites();
 loadLists();

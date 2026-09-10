@@ -34,6 +34,7 @@ header {
 }
 
 .userMenu {
+    position: relative;
     margin-left: auto;
 }
 
@@ -61,9 +62,27 @@ header {
 }
 
 #popularMovies {
+    scrollbar-width: none;
     display: flex;
     gap: 20px;
     overflow-x: auto;
+    flex: 1;
+}
+
+#popularMovies::-webkit-scrollbar {
+    display: none;
+}
+
+#searchResults {
+    scrollbar-width: none;
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    flex: 1;
+}
+
+#searchResults::-webkit-scrollbar {
+    display: none;
 }
 
 .movieCard {
@@ -107,24 +126,6 @@ header {
 
 .moviePoster p {
     color: #aaa;
-}
-
-.movieCard h3 {
-    margin-top: 10px;
-    font-size: 16px;
-    text-align: left;
-}
-
-#popularMovies {
-    scrollbar-width: none;
-    display: flex;
-    gap: 20px;
-    overflow-x: auto;
-    flex: 1;
-}
-
-#popularMovies::-webkit-scrollbar {
-    display: none;
 }
 
 .movieRow {
@@ -223,11 +224,6 @@ header {
 
 .closeModal:hover {
     background-color: #555;
-}
-
-.userMenu {
-    position: relative;
-    margin-left: auto;
 }
 
 .userDropdown {

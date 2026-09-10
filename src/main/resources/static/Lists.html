@@ -19,6 +19,7 @@
     </div>
 
     <div class="userMenu">
+
         <button id="userButton" aria-label="User menu">
             <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -35,6 +36,19 @@
                 <path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/>
             </svg>
         </button>
+
+        <div id="userDropdown" class="userDropdown">
+
+            <button id="homeButton">
+                Home
+            </button>
+
+            <button id="logoutButton">
+                Log Out
+            </button>
+
+        </div>
+
     </div>
 
 </header>
@@ -44,7 +58,11 @@
 
         <div class="listsHeader">
             <h2>My Lists</h2>
-            <button id="createListButton"> + Create New List</button>
+
+            <div class="listsHeaderButtons">
+                <button id="createListButton"> + Create New List</button>
+            </div>
+
         </div>
 
         <div id="listsContainer">
