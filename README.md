@@ -1,0 +1,1 @@
+FilmFolio is a full-stack movie management application that allows users to search for movies, view detailed movie information, create personalized movie lists, and save favorite movies. The application integrates with the TMDB API to retrieve movie information and uses a SQL database to store user and movie-list data.
